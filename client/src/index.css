@@ -1,68 +1,370 @@
+/* ==========================================================================
+   DESIGN TOKENS — generated from Figma brand bible
+   ========================================================================== */
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* ---- Neutrals ---- */
+  --color-neutral-100: #FFFFFF;
+  --color-neutral-200: #F5F5F5;
+  --color-neutral-300: #B0B0B0;
+  --color-neutral-400: #707070;
+  --color-neutral-500: #3D3D3D;
+  --color-neutral-600: #1B1B1B;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* ---- Green ---- */
+  --color-green-100: #C1E0A6;
+  --color-green-200: #96CC67;
+  --color-green-300: #6BA539;
+  --color-green-400: #57852F;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* ---- Red ---- */
+  --color-red-100: #F2BCBC;
+  --color-red-200: #E36E6E;
+  --color-red-300: #C62828;
+
+  /* ---- Yellow ---- */
+  --color-yellow-100: #FBEABF;
+  --color-yellow-200: #F0C048;
+  --color-yellow-300: #866208;
+
+  /* ---- Semantic aliases (use these in components) ---- */
+  --color-bg: var(--color-yellow-100);
+  --color-surface: var(--color-yellow-100);       /* card/tag surface, per Card + Tags spec */
+  --color-text-primary: var(--color-neutral-600);
+  --color-text-secondary: var(--color-neutral-400);
+  --color-border: var(--color-neutral-300);
+
+  --color-primary: var(--color-green-400);
+  --color-primary-hover: var(--color-green-300);
+  --color-primary-disabled: var(--color-green-200);
+
+  --color-error: var(--color-red-300);
+  --color-error-bg: var(--color-red-100);
+  --color-error-border: var(--color-red-300);
+
+  --color-success-border: var(--color-green-300);
+  --color-success-bg: var(--color-yellow-100);
+
+  --color-tag-bg: var(--color-yellow-100);
+  --color-tag-text: var(--color-yellow-300);
+
+  /* ---- Typography ---- */
+  --font-family-base: "Open Sans", sans-serif;
+
+  /* Desktop */
+  --font-size-h1: 24px;
+  --font-size-h2: 20px;
+  --font-size-h3: 18px;
+  --font-size-body: 16px;
+  --font-size-body-sm: 12px;
+
+  /* Mobile */
+  --font-size-h1-mobile: 40px;
+  --font-size-h2-mobile: 28px;
+  --font-size-h3-mobile: 20px;
+  --font-size-body-mobile: 18px;
+  --font-size-body-sm-mobile: 14px;
+
+  --font-weight-heading: 600; /* Semi Bold */
+  --font-weight-body: 400;    /* Regular */
+
+  /* ---- Radii / spacing (inferred from component shapes) ---- */
+  --radius-button: 999px;
+  --radius-input: 10px;
+  --radius-card: 14px;
+  --radius-tag: 999px;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* ==========================================================================
+   GLOBAL RESET / BASE
+   ========================================================================== */
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: var(--color-bg);
 }
 
 body {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-body);
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-heading);
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+
+p, span, label {
+  font-family: var(--font-family-base);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.text-body-sm {
+  font-size: var(--font-size-body-sm);
+}
+
+/* Mobile typography overrides */
+@media (max-width: 768px) {
+  h1 { font-size: var(--font-size-h1-mobile); }
+  h2 { font-size: var(--font-size-h2-mobile); }
+  h3 { font-size: var(--font-size-h3-mobile); }
+  body { font-size: var(--font-size-body-mobile); }
+  .text-body-sm { font-size: var(--font-size-body-sm-mobile); }
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+.btn {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-heading);
+  font-size: var(--font-size-body);
+  border-radius: var(--radius-button);
+  padding: 12px 28px;
+  border: 2px solid transparent;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Primary — filled green */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-neutral-100);
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+.btn-primary:disabled {
+  background-color: var(--color-primary-disabled);
+  color: var(--color-neutral-100);
+  cursor: not-allowed;
+}
+.btn-primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-neutral-100), 0 0 0 5px var(--color-primary);
+}
+
+/* Secondary — cream outlined, green text */
+.btn-secondary {
+  background-color: var(--color-yellow-100);
+  border-color: var(--color-green-400);
+  color: var(--color-green-400);
+}
+.btn-secondary:hover {
+  background-color: var(--color-yellow-100);
+  border-color: var(--color-green-300);
+}
+.btn-secondary:disabled {
+  border-color: var(--color-green-200);
+  color: var(--color-green-200);
+  cursor: not-allowed;
+}
+.btn-secondary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-yellow-100), 0 0 0 5px var(--color-green-400);
+}
+
+/* Tertiary — text only, no fill/border */
+.btn-tertiary {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-green-400);
+  padding: 12px 16px;
+}
+.btn-tertiary:hover {
+  color: var(--color-green-300);
+}
+.btn-tertiary:disabled {
+  color: var(--color-green-200);
+  cursor: not-allowed;
+}
+.btn-tertiary:focus-visible {
+  outline: none;
+  border-color: var(--color-green-400);
+}
+
+/* ==========================================================================
+   LINKS
+   ========================================================================== */
+
+.link {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-green-400);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.link:hover {
+  color: var(--color-green-300);
+}
+.link.disabled,
+.link[aria-disabled="true"] {
+  color: var(--color-green-200);
+  cursor: not-allowed;
+}
+.link:focus-visible {
+  outline: 2px solid var(--color-green-400);
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+/* ==========================================================================
+   INPUTS
+   ========================================================================== */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: var(--font-weight-heading);
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+
+.form-input {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  padding: 14px 18px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-input);
+  background-color: var(--color-neutral-100);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-input::placeholder {
+  color: var(--color-neutral-300);
+}
+
+.form-input:focus {
+  border-color: var(--color-neutral-600);
+}
+
+/* Success / filled state (cream bg, green border) */
+.form-input.success {
+  background-color: var(--color-yellow-100);
+  border-color: var(--color-green-300);
+}
+.form-input.success ~ .form-label,
+.form-group.success .form-label {
+  color: var(--color-green-300);
+}
+
+/* Error state */
+.form-group.error .form-label {
+  color: var(--color-error);
+}
+.form-input.error {
+  border-color: var(--color-error-border);
+  color: var(--color-error);
+}
+.form-error-text {
+  font-size: var(--font-size-body-sm);
+  color: var(--color-error);
+  margin: 2px 0 0;
+}
+
+/* ==========================================================================
+   TAGS
+   ========================================================================== */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  color: var(--color-tag-text);
+  background-color: var(--color-tag-bg);
+  border-radius: var(--radius-tag);
+  padding: 8px 20px;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   CARD
+   ========================================================================== */
+
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: 1px solid var(--color-neutral-300);
+  max-width: 340px;
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-text-primary);
+  margin: 0 0 4px;
+}
+
+.card-subtitle {
+  font-style: italic;
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  margin: 0 0 16px;
+}
+
+.card-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.card-actions .icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-green-400);
+  display: flex;
+  align-items: center;
+}
+.card-actions .icon-btn:hover {
+  color: var(--color-green-300);
+}
+
+/* ==========================================================================
+   ICONS
+   ========================================================================== */
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-neutral-600);
+  stroke: currentColor;
+  fill: none;
 }

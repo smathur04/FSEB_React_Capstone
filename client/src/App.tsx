@@ -1,5 +1,16 @@
+import { Route, Routes } from "react-router";
+import LandPage from "./pages/LandPage";
+
+
 function App() {
-  return <h1>Deloitte React Project</h1>;
+  return (
+    <Routes>
+      <Route 
+        path="/" 
+        element={<LandPage />} 
+      />
+    </Routes>
+  )
 }
 
 export default App;
