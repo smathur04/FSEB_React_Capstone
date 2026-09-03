@@ -2,6 +2,8 @@ import { useLoading } from "../LoadingContext";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import logo from "../assets/logo.png";
+import { useState } from "react";
+import { Link } from "react-router";
 
 type SignState = {
     email: string;
@@ -18,12 +20,11 @@ const styles = {
 
 const LandPage = () => {
     const { setIsLoading } = useLoading();
-
-    let rel: boolean = false;
-
-    function handleLogin() {
+    const [attempted, setAttempted] = useState(false);
+    function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
         setIsLoading(true);
-        rel = true;
+        setAttempted(true);
         setTimeout(() => {
             setIsLoading(false)
         }, 2000);
@@ -31,28 +32,32 @@ const LandPage = () => {
     return (
         <div className="page">
 
-        <img style={styles.image} src={logo} alt="Logo" />
+            <img style={styles.image} src={logo} alt="Logo" />
 
-        <div className="page__content">
-            <div className="page-card page-card--sm">
-            <div className="page-card__header">
-                <h1>Welcome Back!</h1>
-                <p>Log in to your account to continue</p>
-            </div>
+            <div className="page__content">
+                <div className="page-card page-card--md">
+                    <div className="page-card__header">
+                        <h1>Welcome Back!</h1>
+                        <p>Log in to your account to continue</p>
+                    </div>
 
-            <div className="page-card__stack">
-                <Input label="Email" placeholder="Email" type="email" attempted = {rel}
-                errorMessages={["Please use a valid email address as your username"]} />
-                <Input label="Password" placeholder="*************" type="password" attempted = {rel}
-                errorMessages={["Please add a password with at least 8 characters"]} />
-            </div>
+                    <form id="login-form" onSubmit={handleLogin} className="page-card__stack">
+                        <Input label="Email" placeholder="Email" type="email" attempted = {attempted}
+                        errorMessages={["Please use a valid email address as your username"]} />
+                        <Input label="Password" placeholder="*************" type="password" attempted = {attempted}
+                        errorMessages={["Please add a password with at least 8 characters"]} />
+                        <span className="link link--sm" style={{ cursor: "default", textAlign: "right", fontSize: "12px" }}>
+                            Forgot Password?
+                        </span>
+                    </form>
 
-            <div className="page-card__actions">
-                <Button onClick={() => {handleLogin()}} variant="primary">Login</Button>
-                <Button variant="secondary">Create an Account</Button>
+                    <div className="page-card__actions">
+                        <Button type="submit" form="login-form" variant="primary">Login</Button>
+                        <Button type="button" variant="secondary">Create an Account</Button>
+                        <Button type="button" variant="tertiary">Explore Recipes without Logging In</Button>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
         </div>
     )
 }

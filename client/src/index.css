@@ -74,6 +74,7 @@ html, body, #root {
   background-color: var(--color-bg);
 }
 
+
 body {
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-body);
@@ -488,9 +489,10 @@ h3 { font-size: var(--font-size-h3); line-height: var(--line-height-h3); }
 .page__content {
   flex: 1;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  padding: 40px 20px;
+  padding: 20px 20px;
   box-sizing: border-box;
   background: var(--color-bg); /* white page background around the floating card, desktop */
 }
@@ -556,6 +558,11 @@ h3 { font-size: var(--font-size-h3); line-height: var(--line-height-h3); }
     max-width: 100%;
     flex: 1;
     border-radius: 0;
-    padding: 40px 24px;
+    padding: 4px 24px;
   }
+}
+
+.page-card__header h1 {
+  font-size: var(--font-size-h1-mobile);
+  line-height: var(--line-height-h1-mobile);
 }
