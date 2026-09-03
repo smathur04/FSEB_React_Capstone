@@ -1,18 +1,20 @@
 /* ==========================================================================
-   DESIGN TOKENS — generated from Figma brand bible
+   DESIGN TOKENS
+   Rebuilt from exact Figma Dev Mode CSS exports (colors, typography,
+   buttons, links, inputs, tags, card). No estimated values.
    ========================================================================== */
 
 :root {
   /* ---- Neutrals ---- */
   --color-neutral-100: #FFFFFF;
-  --color-neutral-200: #F5F5F5;
+  --color-neutral-200: #EBEBEB;
   --color-neutral-300: #B0B0B0;
   --color-neutral-400: #707070;
   --color-neutral-500: #3D3D3D;
   --color-neutral-600: #1B1B1B;
 
   /* ---- Green ---- */
-  --color-green-100: #C1E0A6;
+  --color-green-100: #DAECCA;
   --color-green-200: #96CC67;
   --color-green-300: #6BA539;
   --color-green-400: #57852F;
@@ -23,56 +25,42 @@
   --color-red-300: #C62828;
 
   /* ---- Yellow ---- */
-  --color-yellow-100: #FBEABF;
+  --color-yellow-100: #FFF7E6;
   --color-yellow-200: #F0C048;
   --color-yellow-300: #866208;
-
-  /* ---- Semantic aliases (use these in components) ---- */
-  --color-bg: var(--color-yellow-100);
-  --color-surface: var(--color-yellow-100);       /* card/tag surface, per Card + Tags spec */
-  --color-text-primary: var(--color-neutral-600);
-  --color-text-secondary: var(--color-neutral-400);
-  --color-border: var(--color-neutral-300);
-
-  --color-primary: var(--color-green-400);
-  --color-primary-hover: var(--color-green-300);
-  --color-primary-disabled: var(--color-green-200);
-
-  --color-error: var(--color-red-300);
-  --color-error-bg: var(--color-red-100);
-  --color-error-border: var(--color-red-300);
-
-  --color-success-border: var(--color-green-300);
-  --color-success-bg: var(--color-yellow-100);
-
-  --color-tag-bg: var(--color-yellow-100);
-  --color-tag-text: var(--color-yellow-300);
+  --color-yellow-cream: #FFF7E6; /* used as filled/focus surface for inputs & buttons */
 
   /* ---- Typography ---- */
-  --font-family-base: "Open Sans", sans-serif;
+  --font-family-base: 'Open Sans', sans-serif;
 
   /* Desktop */
-  --font-size-h1: 24px;
-  --font-size-h2: 20px;
-  --font-size-h3: 18px;
-  --font-size-body: 16px;
-  --font-size-body-sm: 12px;
+  --font-size-h1: 24px;   --line-height-h1: 33px;
+  --font-size-h2: 20px;   --line-height-h2: 27px;
+  --font-size-h3: 18px;   --line-height-h3: 25px;
+  --font-size-body: 16px; --line-height-body: 22px;
+  --font-size-body-sm: 12px; --line-height-body-sm: 16px;
 
   /* Mobile */
-  --font-size-h1-mobile: 40px;
-  --font-size-h2-mobile: 28px;
-  --font-size-h3-mobile: 20px;
-  --font-size-body-mobile: 18px;
-  --font-size-body-sm-mobile: 14px;
+  --font-size-h1-mobile: 40px;   --line-height-h1-mobile: 54px;
+  --font-size-h2-mobile: 28px;   --line-height-h2-mobile: 38px;
+  --font-size-h3-mobile: 20px;   --line-height-h3-mobile: 27px;
+  --font-size-body-mobile: 18px; --line-height-body-mobile: 25px;
+  --font-size-body-sm-mobile: 14px; --line-height-body-sm-mobile: 19px;
 
-  --font-weight-heading: 600; /* Semi Bold */
-  --font-weight-body: 400;    /* Regular */
+  --font-weight-heading: 700;
+  --font-weight-body: 400;
 
-  /* ---- Radii / spacing (inferred from component shapes) ---- */
-  --radius-button: 999px;
-  --radius-input: 10px;
-  --radius-card: 14px;
-  --radius-tag: 999px;
+  /* ---- Radii ---- */
+  --radius-button: 12px;
+  --radius-input: 12px;
+  --radius-card: 12px;
+  --radius-tag: 12px;
+  --radius-link-focus: 4px;
+
+  /* ---- Semantic aliases ---- */
+  --color-bg: var(--color-yellow-100);
+  --color-text-primary: var(--color-neutral-600);
+  --color-text-secondary: var(--color-neutral-400);
 }
 
 /* ==========================================================================
@@ -90,192 +78,244 @@ body {
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-body);
   font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
   color: var(--color-text-primary);
 }
 
 h1, h2, h3 {
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-heading);
+  color: var(--color-text-primary);
   margin: 0;
 }
 
-h1 { font-size: var(--font-size-h1); }
-h2 { font-size: var(--font-size-h2); }
-h3 { font-size: var(--font-size-h3); }
-
-p, span, label {
-  font-family: var(--font-family-base);
-}
+h1 { font-size: var(--font-size-h1); line-height: var(--line-height-h1); }
+h2 { font-size: var(--font-size-h2); line-height: var(--line-height-h2); }
+h3 { font-size: var(--font-size-h3); line-height: var(--line-height-h3); }
 
 .text-body-sm {
   font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
 }
 
-/* Mobile typography overrides */
+/* Mobile typography (Figma "Mobile" column) */
 @media (max-width: 768px) {
-  h1 { font-size: var(--font-size-h1-mobile); }
-  h2 { font-size: var(--font-size-h2-mobile); }
-  h3 { font-size: var(--font-size-h3-mobile); }
-  body { font-size: var(--font-size-body-mobile); }
-  .text-body-sm { font-size: var(--font-size-body-sm-mobile); }
+  h1 { font-size: var(--font-size-h1-mobile); line-height: var(--line-height-h1-mobile); }
+  h2 { font-size: var(--font-size-h2-mobile); line-height: var(--line-height-h2-mobile); }
+  h3 { font-size: var(--font-size-h3-mobile); line-height: var(--line-height-h3-mobile); }
+  body { font-size: var(--font-size-body-mobile); line-height: var(--line-height-body-mobile); }
+  .text-body-sm { font-size: var(--font-size-body-sm-mobile); line-height: var(--line-height-body-sm-mobile); }
 }
 
 /* ==========================================================================
    BUTTONS
+   Source states in Figma: Default, Hover, Focus (no Disabled frame given)
    ========================================================================== */
 
 .btn {
-  font-family: var(--font-family-base);
-  font-weight: var(--font-weight-heading);
-  font-size: var(--font-size-body);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 40px;
+  min-height: 56px;
   border-radius: var(--radius-button);
-  padding: 12px 28px;
   border: 2px solid transparent;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+              color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Primary — filled green */
+/* Primary */
 .btn-primary {
-  background-color: var(--color-primary);
+  background: var(--color-green-300); /* #6BA539 */
   color: var(--color-neutral-100);
 }
 .btn-primary:hover {
-  background-color: var(--color-primary-hover);
-}
-.btn-primary:disabled {
-  background-color: var(--color-primary-disabled);
-  color: var(--color-neutral-100);
-  cursor: not-allowed;
+  background: var(--color-green-200); /* #96CC67 */
 }
 .btn-primary:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px var(--color-neutral-100), 0 0 0 5px var(--color-primary);
+  background: var(--color-green-300);
+  box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 0px 0px 4px var(--color-green-300);
+}
+/* No disabled frame provided in Figma export — placeholder only */
+.btn-primary:disabled {
+  background: var(--color-green-200);
+  color: var(--color-neutral-100);
+  cursor: not-allowed;
 }
 
-/* Secondary — cream outlined, green text */
+/* Secondary */
 .btn-secondary {
-  background-color: var(--color-yellow-100);
-  border-color: var(--color-green-400);
-  color: var(--color-green-400);
+  background: var(--color-yellow-100); /* #FFF7E6 */
+  border: 2px solid var(--color-green-300);
+  color: var(--color-green-300);
 }
 .btn-secondary:hover {
-  background-color: var(--color-yellow-100);
+  border-color: var(--color-green-200);
+  color: var(--color-green-200);
+}
+.btn-secondary:focus-visible {
+  outline: none;
   border-color: var(--color-green-300);
+  color: var(--color-green-300);
+  box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 0px 0px 4px var(--color-green-300);
 }
 .btn-secondary:disabled {
   border-color: var(--color-green-200);
   color: var(--color-green-200);
   cursor: not-allowed;
 }
-.btn-secondary:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--color-yellow-100), 0 0 0 5px var(--color-green-400);
-}
 
-/* Tertiary — text only, no fill/border */
+/* Ghost / tertiary */
 .btn-tertiary {
-  background-color: transparent;
-  border-color: transparent;
-  color: var(--color-green-400);
-  padding: 12px 16px;
+  background: transparent;
+  border: 2px solid transparent;
+  color: var(--color-green-300);
 }
 .btn-tertiary:hover {
+  color: var(--color-green-200);
+}
+.btn-tertiary:focus-visible {
+  outline: none;
+  border-color: var(--color-green-300);
   color: var(--color-green-300);
+  box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 0px 0px 4px var(--color-green-300);
 }
 .btn-tertiary:disabled {
   color: var(--color-green-200);
   cursor: not-allowed;
 }
-.btn-tertiary:focus-visible {
-  outline: none;
-  border-color: var(--color-green-400);
-}
 
 /* ==========================================================================
    LINKS
+   Source states: Default, Press (mapped to hover/active), Focus
    ========================================================================== */
 
 .link {
   font-family: var(--font-family-base);
-  font-weight: var(--font-weight-heading);
-  color: var(--color-green-400);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
   text-decoration: underline;
+  color: var(--color-green-300);
   cursor: pointer;
 }
-.link:hover {
-  color: var(--color-green-300);
+.link:hover,
+.link:active {
+  color: var(--color-green-200); /* Figma "Press" state */
 }
+.link:focus-visible {
+  outline: none;
+  border: 2px solid var(--color-green-300);
+  border-radius: var(--radius-link-focus);
+  color: var(--color-green-300);
+  padding: 2px 4px;
+}
+/* No disabled frame provided in Figma export — placeholder only */
 .link.disabled,
 .link[aria-disabled="true"] {
   color: var(--color-green-200);
   cursor: not-allowed;
-}
-.link:focus-visible {
-  outline: 2px solid var(--color-green-400);
-  border-radius: 4px;
-  padding: 2px 4px;
+  pointer-events: none;
 }
 
 /* ==========================================================================
    INPUTS
+   Source states: Default, Active (filled), Focus, Error
    ========================================================================== */
 
 .form-group {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
-  margin-bottom: 20px;
 }
 
 .form-label {
-  font-weight: var(--font-weight-heading);
-  font-size: var(--font-size-body);
-  color: var(--color-text-secondary);
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: var(--color-neutral-400); /* default label color */
 }
 
 .form-input {
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-body);
-  padding: 14px 18px;
-  border: 2px solid var(--color-border);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 56px;
+  padding: 8px 12px;
+  gap: 8px;
+  border: 2px solid var(--color-neutral-400); /* default border */
   border-radius: var(--radius-input);
-  background-color: var(--color-neutral-100);
-  color: var(--color-text-primary);
+  background: var(--color-yellow-100);
+
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  color: var(--color-neutral-400);
+
   outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
 }
 
 .form-input::placeholder {
-  color: var(--color-neutral-300);
+  color: var(--color-neutral-400);
 }
 
-.form-input:focus {
-  border-color: var(--color-neutral-600);
+/* Active — once field has content, per Figma "Property 1=Active" */
+.form-group.active .form-label {
+  color: var(--color-neutral-500);
+}
+.form-input.active {
+  border-color: var(--color-neutral-500);
+  color: var(--color-neutral-500);
 }
 
-/* Success / filled state (cream bg, green border) */
-.form-input.success {
-  background-color: var(--color-yellow-100);
-  border-color: var(--color-green-300);
+/* Focus */
+.form-group.focus .form-label {
+  color: var(--color-neutral-500);
 }
-.form-input.success ~ .form-label,
-.form-group.success .form-label {
-  color: var(--color-green-300);
+.form-input:focus,
+.form-input.focus {
+  background: var(--color-yellow-100);
+  border-color: var(--color-neutral-400);
+  color: var(--color-neutral-500);
+  box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 0px 0px 4px var(--color-green-300);
 }
 
-/* Error state */
+/* Error */
 .form-group.error .form-label {
-  color: var(--color-error);
+  color: var(--color-red-300);
+  font-weight: 400; /* matches Figma — error label is regular weight, not bold */
 }
 .form-input.error {
-  border-color: var(--color-error-border);
-  color: var(--color-error);
+  border-color: var(--color-red-300);
+  color: var(--color-red-300);
+}
+.form-input.error::placeholder {
+  color: var(--color-red-300);
 }
 .form-error-text {
-  font-size: var(--font-size-body-sm);
-  color: var(--color-error);
-  margin: 2px 0 0;
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--color-red-300);
+  margin: 0;
 }
 
 /* ==========================================================================
@@ -286,12 +326,16 @@ p, span, label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-body);
-  color: var(--color-tag-text);
-  background-color: var(--color-tag-bg);
+  padding: 6px 16px;
+  background: var(--color-yellow-100);
   border-radius: var(--radius-tag);
-  padding: 8px 20px;
+
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+  color: var(--color-yellow-300);
   white-space: nowrap;
 }
 
@@ -300,71 +344,218 @@ p, span, label {
    ========================================================================== */
 
 .card {
-  background-color: var(--color-surface);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 300px;
+  background: var(--color-yellow-100);
+  border: 2px solid var(--color-neutral-300);
   border-radius: var(--radius-card);
+  box-shadow: 0px 4px 32px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  border: 1px solid var(--color-neutral-300);
-  max-width: 340px;
 }
 
 .card-image {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 182px;
   object-fit: cover;
   display: block;
 }
 
 .card-body {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: left-start;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.card-primary-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.card-name-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
 }
 
 .card-title {
-  font-size: var(--font-size-h2);
-  font-weight: var(--font-weight-heading);
-  color: var(--color-text-primary);
-  margin: 0 0 4px;
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 38px;
+  color: var(--color-neutral-600);
+  margin: 0;
+  width: 100%;
 }
 
 .card-subtitle {
+  font-family: var(--font-family-base);
   font-style: italic;
-  font-size: var(--font-size-body);
-  color: var(--color-text-secondary);
-  margin: 0 0 16px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--color-neutral-600);
+  margin: 0;
+  width: 100%;
 }
 
 .card-tags {
   display: flex;
+  align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+  width: 100%;
 }
 
-.card-actions {
+.card-icons {
   display: flex;
   justify-content: flex-end;
-  gap: 16px;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
 }
 
-.card-actions .icon-btn {
+.card-icons .icon-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 3px 4px;
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--color-green-400);
-  display: flex;
-  align-items: center;
+  color: var(--color-green-400); /* #57852F */
 }
-.card-actions .icon-btn:hover {
+.card-icons .icon-btn:hover {
   color: var(--color-green-300);
+}
+.card-icons .icon-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
 }
 
 /* ==========================================================================
-   ICONS
+   PAGE SHELL — reusable centered-card pattern
+   Used for every flow: login, create account, dashboard, recipe detail, etc.
+   Assumption (flag if wrong): mobile breakpoint = 480px; card goes full-bleed
+   on mobile (no floating margin), matching "card floats on mobile" note —
+   adjust --card-mobile-radius/margin below if your Figma shows it still
+   floating with a small margin instead of edge-to-edge.
    ========================================================================== */
 
-.icon {
-  width: 24px;
-  height: 24px;
+/* Brand bar — sits above the card on every screen, both breakpoints */
+.brand-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 64px;
+  width: 100%;
+  background: var(--color-yellow-100);
+}
+.brand-bar img {
+  height: 33px;
+  width: 33px;
+}
+.brand-bar span {
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
   color: var(--color-neutral-600);
-  stroke: currentColor;
-  fill: none;
+}
+
+.page {
+  display: flex;
+  flex-direction: column; /* stacks brand-bar above the centered page content */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.page__content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  background: var(--color-bg); /* white page background around the floating card, desktop */
+}
+
+/* Base card shell — every screen's floating container */
+.page-card {
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* gap between header / fields-stack / actions-stack, per Figma */
+  width: 100%;
+  padding: 32px 28px;
+  background: var(--color-yellow-100);
+  border-radius: var(--radius-card);
+  box-sizing: border-box;
+}
+
+/* Width variants — swap per screen. Adjust these three numbers to match
+   each flow's actual Figma frame width once you've checked them. */
+.page-card--sm { max-width: 360px; }  /* login / create account */
+.page-card--md { max-width: 480px; } /* forms with more fields */
+.page-card--lg { max-width: 640px; } /* dashboard / recipe list */
+
+/* Internal stacking patterns — reuse inside any page-card */
+.page-card__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+}
+
+.page-card__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* gap between form fields */
+}
+
+.page-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* gap between stacked buttons */
+}
+
+.page-card__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+/* Mobile: card goes full-bleed, sharing the same cream background as the
+   brand bar above it (no radius/shadow/margin gap between them) */
+@media (max-width: 480px) {
+  .page__content {
+    padding: 0;
+    background: var(--color-yellow-100);
+  }
+  .page-card,
+  .page-card--sm,
+  .page-card--md,
+  .page-card--lg {
+    max-width: 100%;
+    flex: 1;
+    border-radius: 0;
+    padding: 40px 24px;
+  }
 }

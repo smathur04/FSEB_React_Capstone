@@ -1,3 +1,5 @@
+import logo from "../assets/logo.png";
+
 const styles = {
   loader: {
     position: "fixed" as const,
@@ -9,19 +11,19 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    background: "#FBEABF",
+    background: "var(--color-yellow-cream)",
   },
   image: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover" as const,
+    width: "180px",
+    height: "90px",
+    objectFit: "contain" as const,
   },
 };
 
 export default function FullScreenLoader() {
   return (
     <div style={styles.loader}>
-      <img src="../assets/react.svg" alt="Loading..." style={styles.image} />
+      <img src={logo} alt="Loading..." style={styles.image} />
     </div>
   );
 }
