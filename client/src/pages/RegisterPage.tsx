@@ -36,13 +36,14 @@ const RegisterPage = () => {
         })
         .then(() => {
             navigate("/dashboard"); 
+            setAttempted(false);
         })
         .catch((err) => {
             console.log(err, "this is error");
         })
         .finally(() => {
             setIsLoading(false);
-            setAttempted(false);
+            
         });
     }
 

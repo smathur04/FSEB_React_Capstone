@@ -508,6 +508,47 @@ h3 { font-size: var(--font-size-h3); line-height: var(--line-height-h3); }
   box-sizing: border-box;
 }
 
+.toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-yellow-100);
+  border: 1px solid var(--color-green-300);
+  border-radius: var(--radius-input);
+  padding: 12px 24px;
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  z-index: 999999;
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 220px;
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-card);
+  background: var(--color-yellow-100);
+  color: var(--color-text-primary);
+  box-sizing: border-box;
+}
+
+.recipe-row {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  width: 100%;
+}
+
+.recipe-row .card {
+  flex: 0 0 280px;
+}
+
 /* Width variants — swap per screen. Adjust these three numbers to match
    each flow's actual Figma frame width once you've checked them. */
 .page-card--sm { max-width: 360px; }  /* login / create account */

@@ -20,7 +20,6 @@ const ExplorePage = () => {
 
     try {
       const results: Recipe[] = await recipeService.getAll(form.search);
-      console.log(results[0]);
       setRecipes(results);
     } catch (err) {
       console.log(err, "Error fetching recipes");
@@ -55,7 +54,7 @@ const ExplorePage = () => {
                             <img src={recipe.image} alt={recipe.title} className="card-image" />
                             <div className="card-body">
                               <h3 className="card-title">{recipe.title}</h3>
-                              <p>Created on: {recipe.createdAt.substring(0, 10)}</p>
+                              <p>Created on: {recipe.createdAt?.substring(0, 10)}</p>
                               <div className="">
                                 {recipe.tags.map((tag) => (
                                   <span className="tag" key={tag}>{tag}</span>
