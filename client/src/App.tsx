@@ -13,11 +13,15 @@ function App() {
         element={<LandPage />} 
       />
       <Route 
+        path="/login" 
+        element={<LandPage />} 
+      />
+      <Route 
         path="/register" 
         element={<RegisterPage />} 
       />
       <Route 
-        path="/explore" 
+        path="/recipes" 
         element={<ExplorePage />} 
       />
       <Route element={<RequireAuth />}>

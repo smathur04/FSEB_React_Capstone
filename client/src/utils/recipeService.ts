@@ -19,7 +19,7 @@ async function create(recipe: RecipeInput): Promise<Recipe> {
 }
 
 async function update(id: string, recipe: RecipeInput): Promise<Recipe> {
-  const res = await api.put(`api/recipes/:${id}`, recipe);
+  const res = await api.put(`api/recipes/${id}`, recipe);
   return res.data;
 }
 

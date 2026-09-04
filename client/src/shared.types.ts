@@ -20,6 +20,10 @@ export type Recipe = {
   ingredients: Ingredient[];
   instructions: Instruction[];
   tags: string[];
+  _id: string;
+  createdAt: string;
+  ownerId: string;
+  updatedAt: string;
 };
 
 export type RecipeInput = {

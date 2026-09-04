@@ -69,7 +69,7 @@ const RegisterPage = () => {
 
                     <div className="page-card__actions">
                         <Button type="submit" form="create-account-form" variant="primary">Create Account</Button>
-                        <Button type="button" onClick={() => navigate("/")} variant="secondary">Cancel</Button>
+                        <Button type="button" onClick={() => navigate("/login")} variant="secondary">Cancel</Button>
                     </div>
                 </div>
             </div>
