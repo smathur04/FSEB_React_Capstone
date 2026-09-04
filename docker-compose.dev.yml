@@ -1,0 +1,42 @@
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: mongo
+    restart: unless-stopped
+    ports: ["27017:27017"]
+    volumes:
+      - mongo-data:/data/db
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: api
+    environment:
+      - JWT_SECRET=my secret string
+      - MONGO_URL=mongodb://mongo:27017/deloitte
+      - PORT=3000
+    ports: ["3000:3000"]
+    volumes:
+      - ./backend:/usr/src/app # bind-mount source
+      - /usr/src/app/node_modules
+    depends_on: [mongo]
+
+  client:
+    build:
+      context: ./client
+      dockerfile: ../Dockerfile.dev
+    container_name: client
+    command: npm run dev -- --host 0.0.0.0 --port 5173
+    ports: ["5173:5173"]
+    environment:
+      - CHOKIDAR_USEPOLLING=1 # reliable file-watch on macOS/Windows
+      - VITE_API_URL=http://localhost:3000
+    volumes:
+      - ./client:/app # hot-reload frontend
+      - /app/node_modules # ensure container node_modules wins
+    depends_on: [api]
+    tty: true
+
+volumes:
+  mongo-data:

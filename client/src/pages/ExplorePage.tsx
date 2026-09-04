@@ -2,14 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import Input from "../components/Input"
 import Navbar from "../components/NavBar"
 import recipeService from "../utils/recipeService";
-import { useLoading } from "../LoadingContext";
 import type { Recipe } from "../shared.types";
 import { Link } from "react-router-dom";
 
 const ExplorePage = () => {
   const [search, setSearch] = useState("");
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const { setIsLoading } = useLoading();
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isFirstRender = useRef(true);
 

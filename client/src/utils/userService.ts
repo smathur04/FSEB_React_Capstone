@@ -2,7 +2,7 @@ import tokenService from "./tokenService";
 import type { User } from "../shared.types";
 import axios from "axios";
 
-const BASE_URL = "/";
+const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/`;
 
 type LoginCredentials = {
   email: string;
