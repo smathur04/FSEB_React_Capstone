@@ -44,11 +44,15 @@ function App() {
       <Route element={<RequireAuth />}>
         <Route
           path="/dashboard"
-          element={<DashboardPage />}
+          element={<DashboardPage onSuccess={() => flashToast("Your recipe was successfully deleted.")}/>}
         />
         <Route
           path="/create"
           element={<CreatePage onSuccess={() => flashToast("Your recipe was successfully created.")}  />}
+        />
+        <Route
+          path="/create/:id"
+          element={<CreatePage onSuccess={() => flashToast("Your recipe was successfully updated.")}  />}
         />
       </Route>
     </Routes>

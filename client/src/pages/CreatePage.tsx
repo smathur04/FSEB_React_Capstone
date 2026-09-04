@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/NavBar";
 import Input from "../components/Input";
 import Button from "../components/Button";
@@ -12,15 +12,46 @@ interface CreateRecipePageProps {
 }
 
 const CreateRecipePage = ({ onSuccess }: CreateRecipePageProps) => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const { setIsLoading } = useLoading();
 
   const [title, setTitle] = useState("");
-  const [ingredients, setIngredients] = useState(""); 
-  const [instructions, setInstructions] = useState(""); 
+  const [ingredients, setIngredients] = useState("");
+  const [instructions, setInstructions] = useState("");
   const [tags, setTags] = useState("");
   const [image, setImage] = useState("");
   const [error, setError] = useState<string | null>(null);
+
+
+  useEffect(() => {
+    if (!id) return;
+    const recipeId = id;
+
+    async function fetchRecipe() {
+      setIsLoading(true);
+      try {
+        const recipe = await recipeService.getById(recipeId);
+        setTitle(recipe.title);
+        setIngredients(recipe.ingredients.map((ing) => ing.name).join(", "));
+        setInstructions(
+          recipe.instructions
+            .slice()
+            .sort((a, b) => a.step - b.step)
+            .map((step) => step.description)
+            .join(", ")
+        );
+        setTags(recipe.tags.join(", "));
+        setImage(recipe.image);
+      } catch (err) {
+        console.log(err, "Error fetching recipe for edit");
+        setError("Could not load this recipe for editing.");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchRecipe();
+  }, [id]);
 
   async function handleSave() {
     setIsLoading(true);
@@ -47,12 +78,16 @@ const CreateRecipePage = ({ onSuccess }: CreateRecipePageProps) => {
     };
 
     try {
-      await recipeService.create(recipe);
+      if (id) {
+        await recipeService.update(id, recipe);
+      } else {
+        await recipeService.create(recipe);
+      }
       onSuccess?.();
       navigate("/dashboard");
     } catch (err: any) {
-        console.log(err.response?.data, "this is the actual validation error");
-        setError("Something went wrong saving this recipe.");
+      console.log(err.response?.data, "this is the actual validation error");
+      setError("Something went wrong saving this recipe.");
     } finally {
       setIsLoading(false);
     }
@@ -64,7 +99,7 @@ const CreateRecipePage = ({ onSuccess }: CreateRecipePageProps) => {
       <div className="page__content">
         <div className="page-card page-card--sm">
           <div className="page-card__header" style={{ alignItems: "center", textAlign: "center" }}>
-            <h1>Create a Recipe</h1>
+            <h1>{id ? "Edit Recipe" : "Create a Recipe"}</h1>
           </div>
 
           <div className="page-card__stack">

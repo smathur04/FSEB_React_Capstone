@@ -13,11 +13,11 @@ const RecipeDetailPage = () => {
 
   useEffect(() => {
     if (!id) return;
-
+    const recipeId = id;
     async function fetchRecipe() {
       setIsLoading(true);
       try {
-        const result = await recipeService.getById(id);
+        const result = await recipeService.getById(recipeId);
         setRecipe(result);
       } catch (err) {
         console.log(err, "Error fetching recipe");

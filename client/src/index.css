@@ -503,7 +503,7 @@ h3 { font-size: var(--font-size-h3); line-height: var(--line-height-h3); }
 .page-card {
   display: flex;
   flex-direction: column;
-  gap: 40px; /* gap between header / fields-stack / actions-stack, per Figma */
+  gap: 32px; /* gap between header / fields-stack / actions-stack, per Figma */
   width: 100%;
   padding: 32px 28px;
   background: var(--color-yellow-100);
@@ -608,4 +608,25 @@ h3 { font-size: var(--font-size-h3); line-height: var(--line-height-h3); }
 .page-card__header h1 {
   font-size: var(--font-size-h1-mobile);
   line-height: var(--line-height-h1-mobile);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999998;
+}
+
+.modal-box {
+  background: var(--color-yellow-100);
+  border-radius: var(--radius-card);
+  padding: 32px;
+  width: 100%;
+  max-width: 320px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 32px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }

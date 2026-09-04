@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import NavBar from '../components/NavBar'
 import type { Recipe } from "../shared.types";
 import recipeService from '../utils/recipeService';
@@ -8,11 +8,15 @@ import { useNavigate } from 'react-router-dom';
 import pencil from "../assets/pencil.png";
 import trash from "../assets/trash.png";
 
-const DashboardPage = () => {
+interface DashboardPageProps {
+  onSuccess?: () => void;
+}
+
+const DashboardPage = ({ onSuccess }: DashboardPageProps) => {
   const navigate = useNavigate();
 
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-
+  const [mightdelete, setMight] = useState("");
 
   useEffect(() => {
     async function handleRecipeSearch() {
@@ -27,7 +31,17 @@ const DashboardPage = () => {
     handleRecipeSearch();
   }, []);
 
-
+  async function handleDelete() {
+    try {
+      await recipeService.remove(mightdelete);
+      setRecipes((prev) => prev.filter((recipe) => recipe._id !== mightdelete));
+      onSuccess?.();
+    } catch (err: any) {
+      console.log(err.response?.data, "this is the actual validation error");
+    } finally {
+      setMight("");
+    }
+  }
 
   return (
     <>
@@ -59,17 +73,34 @@ const DashboardPage = () => {
                       </div>
                       <div style={{ display: "flex", justifyContent: "flex-end",  gap: "16px" }}>
                       <Link to={`/create/${recipe._id}`} className="" style={{ cursor: "default", textAlign: "right", fontSize: "12px" }}><img style={{ width: "32px", height: "32px" }} src={pencil} alt="Edit" /> </Link>
-                      <Link to={`/trash/${recipe._id}`} className="" style={{ cursor: "default", textAlign: "right", fontSize: "12px" }}><img style={{ width: "32px", height: "32px" }} src={trash} alt="Delete" /> </Link>
+                      <a onClick = {() => setMight(recipe._id)} style={{ cursor: "default", textAlign: "right", fontSize: "12px" }}><img style={{ width: "32px", height: "32px" }} src={trash} alt="Delete" /> </a>
                       </div>
                     </div>
                   </div>
+
                 ))}
               </div>)}
-            </div>
+            </div >
             
+            <div className="page-card__actions">
             <Button type="button" onClick={() => navigate("/create")} variant="primary">Create Recipe</Button>
             <Button type="button" variant="secondary" onClick={() => navigate("/recipes")}>Browse Recipes</Button>
-
+            </div>
+            
+            <div>
+              {mightdelete
+                ? <div className="modal-overlay">
+                    <div className="modal-box">
+                      <h2>Delete recipe?</h2>
+                      <p>Do you want to delete this recipe? This action cannot be undone.</p>
+                      <Button type="button" onClick={() => handleDelete()} variant="primary">Yes, Delete Recipe</Button>
+                      <Button type="button" variant="secondary" onClick={() => setMight("")}>Nevermind</Button>
+                    </div>
+                  </div>
+                : <></>
+              }
+            </div>
+            
           </div>
         </div>
       </div>
