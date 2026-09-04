@@ -460,17 +460,14 @@ h3 { font-size: var(--font-size-h3); line-height: var(--line-height-h3); }
 /* Brand bar — sits above the card on every screen, both breakpoints */
 .brand-bar {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between; /* pushes first child left, last child right */
+  align-items: center; /* vertically centers both images */
   gap: 8px;
-  height: 64px;
+  height: 12%;
   width: 100%;
   background: var(--color-yellow-100);
 }
-.brand-bar img {
-  height: 33px;
-  width: 33px;
-}
+
 .brand-bar span {
   font-family: var(--font-family-base);
   font-weight: 700;

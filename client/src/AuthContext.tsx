@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import userService from "./utils/userService"; // adjust path to match your project
+import userService from "./utils/userService"; 
 import type { User } from "./shared.types";
 
 type LoginCredentials = {
