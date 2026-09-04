@@ -1,7 +1,7 @@
 services:
   react-dev:
     build:
-      context: . # the directory containing your Dockerfile
+      context: ./client # the directory containing your Dockerfile
       dockerfile: Dockerfile.dev # or "Dockerfile.dev" if you’ve renamed it
     working_dir: /app # must match WORKDIR in your Dockerfile
     command: npm run dev -- --host 0.0.0.0 --port 5173
