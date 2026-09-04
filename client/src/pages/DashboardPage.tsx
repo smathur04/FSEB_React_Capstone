@@ -93,8 +93,10 @@ const DashboardPage = ({ onSuccess }: DashboardPageProps) => {
                     <div className="modal-box">
                       <h2>Delete recipe?</h2>
                       <p>Do you want to delete this recipe? This action cannot be undone.</p>
+                      <div className="page-card__actions">
                       <Button type="button" onClick={() => handleDelete()} variant="primary">Yes, Delete Recipe</Button>
                       <Button type="button" variant="secondary" onClick={() => setMight("")}>Nevermind</Button>
+                      </div>
                     </div>
                   </div>
                 : <></>
