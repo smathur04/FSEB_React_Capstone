@@ -1,10 +1,8 @@
 import api from "../utils/api";
 import type { Recipe, RecipeInput } from "../shared.types";
 
-async function getAll(search?: string): Promise<Recipe[]> {
-  const res = await api.get("api/recipes", {
-    params: search ? { q: search } : undefined,
-  });
+async function getAll(params?: { title?: string; tag?: string; ingredient?: string }): Promise<Recipe[]> {
+  const res = await api.get("api/recipes", { params });
   return res.data;
 }
 
