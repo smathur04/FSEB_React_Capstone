@@ -203,13 +203,16 @@ h3 { font-size: var(--font-size-h3); line-height: var(--line-height-h3); }
    LINKS
    Source states: Default, Press (mapped to hover/active), Focus
    ========================================================================== */
+ a {
+  text-decoration: none;/* browsers also default <a> to blue — reset that too if needed */
+}
 
 .link {
   font-family: var(--font-family-base);
   font-weight: 700;
   font-size: 18px;
   line-height: 25px;
-  text-decoration: underline;
+  text-decoration: none;
   color: var(--color-green-300);
   cursor: pointer;
 }

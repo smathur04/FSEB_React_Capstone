@@ -57,8 +57,10 @@ const DashboardPage = () => {
                           <span className="tag" key={tag}>{tag}</span>
                         ))}
                       </div>
-                      <Link to={`create/${recipe._id}`} className="link link--sm" style={{ cursor: "default", textAlign: "right", fontSize: "12px" }}><img style={{ width: "32px", height: "32px" }} src={pencil} alt="Edit" /> </Link>
-                      <Link to={`trash`} className="link link--sm" style={{ cursor: "default", textAlign: "right", fontSize: "12px" }}><img style={{ width: "32px", height: "32px" }} src={trash} alt="Delete" /> </Link>
+                      <div style={{ display: "flex", justifyContent: "flex-end",  gap: "16px" }}>
+                      <Link to={`/create/${recipe._id}`} className="" style={{ cursor: "default", textAlign: "right", fontSize: "12px" }}><img style={{ width: "32px", height: "32px" }} src={pencil} alt="Edit" /> </Link>
+                      <Link to={`/trash/${recipe._id}`} className="" style={{ cursor: "default", textAlign: "right", fontSize: "12px" }}><img style={{ width: "32px", height: "32px" }} src={trash} alt="Delete" /> </Link>
+                      </div>
                     </div>
                   </div>
                 ))}
