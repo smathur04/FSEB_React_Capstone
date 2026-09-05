@@ -1,6 +1,6 @@
 # Week 1 Capstone: React Application
 
-http://bucket19319345.s3-website-us-east-1.amazonaws.com/
+http://shaan-react-capstone-2026.s3-website-us-east-1.amazonaws.com/
 
 #### What You'll Build
 
